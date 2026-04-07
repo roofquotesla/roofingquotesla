@@ -25,6 +25,12 @@ export default function Home() {
 
     if (res.ok) {
       setSubmitted(true);
+      // Fire Google Ads conversion event
+      if (typeof window !== "undefined" && typeof window.gtag === "function") {
+        window.gtag("event", "conversion", {
+          send_to: "AW-18069630827",
+        });
+      }
     }
     setSubmitting(false);
   };
