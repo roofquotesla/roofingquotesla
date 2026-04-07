@@ -17,12 +17,15 @@ export default function Home() {
     e.preventDefault();
     setSubmitting(true);
 
-    // TODO: Connect to Google Sheets or backend
-    console.log("Lead submitted:", formData);
+    const res = await fetch("https://formspree.io/f/mjgplwey", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formData),
+    });
 
-    // Simulate submission
-    await new Promise((r) => setTimeout(r, 500));
-    setSubmitted(true);
+    if (res.ok) {
+      setSubmitted(true);
+    }
     setSubmitting(false);
   };
 
